@@ -1,0 +1,27 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Q2
+build_property.RootNamespace = Q2
+build_property.ProjectDir = D:\Quang\Study\PRN221\PRN221_PE_SU24_347947\PE_PRN221_GivenSolution_v2rt\Q2\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Quang\Study\PRN221\PRN221_PE_SU24_347947\PE_PRN221_GivenSolution_v2rt\Q2
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/Quang/Study/PRN221/PRN221_PE_SU24_347947/PE_PRN221_GivenSolution_v2rt/Q2/Pages/Course/AddWithUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291cnNlXEFkZFdpdGhVc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Quang/Study/PRN221/PRN221_PE_SU24_347947/PE_PRN221_GivenSolution_v2rt/Q2/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 

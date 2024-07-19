@@ -1,0 +1,92 @@
+﻿<Window x:Class="AutomobileWBFApppp.WindowCarManagement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutomobileWBFApppp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="637" Width="830">
+    <Window.Resources>
+        <local:AgeConverter x:Key="AgeConverter"/>
+        <local:PriceConverter x:Key="PriceConverter"/>
+    </Window.Resources>
+    <Grid Margin="0,0,10,9" >
+        <Label Name ="lbTitle" Content="Car Infomation" HorizontalAlignment="Left" Margin="11,9,0,0" VerticalAlignment="Top"/>
+        <Label Name ="lbCarId" Content="CarID" HorizontalAlignment="Left" Margin="20,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.552,-0.428" Height="28" Width="80"/>
+        <Label Content="Car Name" HorizontalAlignment="Left" Margin="19,86,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.488,0.579" Width="81"/>
+        <Label Content="Manufacturer" HorizontalAlignment="Left" Margin="24,140,0,0" VerticalAlignment="Top"/>
+        <Label Content="Price" HorizontalAlignment="Left" Margin="24,189,0,0" VerticalAlignment="Top" Width="76"/>
+        <Label Content="Released Year" HorizontalAlignment="Left" Margin="24,243,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label Content="Age" HorizontalAlignment="Left" Margin="24,297,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="76"/>
+        <TextBox Name="txtCarId" HorizontalAlignment="Left" Margin="18,63,0,0" TextWrapping="Wrap" 
+                Text="{Binding Path=CarId, Mode=OneWay}"
+                DataContext="{Binding ElementName=lvCars,
+                Path=SelectedItem}"
+                 VerticalAlignment="Top" Width="294" TextChanged="TextBox_TextChanged" Height="23"/>
+        <TextBlock Name="carIdError" Text="" Foreground="Red" Margin="16,98,0,0"/>
+        <TextBox Name ="txtPrice" HorizontalAlignment="Left" Margin="18,215,0,0" TextWrapping="Wrap" 
+                Text="{Binding Path=Price, Converter={StaticResource PriceConverter}, Mode=OneWay}"
+                DataContext="{Binding ElementName=lvCars, Path=SelectedItem}" 
+                VerticalAlignment="Top" Width="294" Height="23"/>
+        <TextBlock Name="priceError" Text="" Foreground="Red" Margin="24,283,0,0"/>
+        <TextBox Name ="txtManufacturer" HorizontalAlignment="Left" Margin="19,166,0,0" TextWrapping="Wrap" 
+                 Text="{Binding Path=Manufacturer, Mode=OneWay}"
+                DataContext="{Binding ElementName=lvCars,
+                 Path=SelectedItem}"
+                 VerticalAlignment="Top" Width="294" Height="23"/>
+        <TextBox Name = "txtCarName" HorizontalAlignment="Left" Margin="18,112,0,0" TextWrapping="Wrap" 
+                 Text="{Binding Path=CarName, Mode=OneWay}"
+                DataContext="{Binding ElementName=lvCars,
+                    Path=SelectedItem}"
+                 VerticalAlignment="Top" Width="294" Height="23"/>
+        <TextBox Name ="txtReleasedYear"  HorizontalAlignment="Left" Margin="19,269,0,0" TextWrapping="Wrap" 
+                 Text="{Binding Path=ReleasedYear, Mode=OneWay}"
+                DataContext="{Binding ElementName=lvCars,
+                Path=SelectedItem}"
+                 VerticalAlignment="Top" Width="294" Height="23"/>
+        <TextBlock Name="releasedYearError" Text="" Foreground="Red" Margin="24,352,0,0"/>
+        <TextBox Name="txtAge" HorizontalAlignment="Left" Margin="20,327,0,0" TextWrapping="Wrap"
+                 Text="{Binding Path=ReleasedYear, Converter={StaticResource AgeConverter}, Mode=OneWay}"
+                 DataContext="{Binding ElementName=lvCars, Path=SelectedItem}"
+                 VerticalAlignment="Top" Width="292" Height="25"/>
+        <Button x:Name ="btnLoad" Content="Load" HorizontalAlignment="Left" Margin="24,379,0,0" VerticalAlignment="Top" Click="Button_Click_3" Width="56"/>
+        <Button x:Name ="btnInsert" Content="Insert" HorizontalAlignment="Left" Margin="102,379,0,0" VerticalAlignment="Top" Click="Button_Click" Width="56"/>
+        <Button x:Name ="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="176,379,0,0" VerticalAlignment="Top" Click="Button_Click_1" Width="56"/>
+        <Button x:Name ="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="254,379,0,0" VerticalAlignment="Top" Click="Button_Click_2" Width="56"/>
+        <ListView Name="lvCars" Width="Auto" Height="Auto" Margin="0,404,10,10" MouseDoubleClick="lvCars_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Car ID" Width="100"
+DisplayMemberBinding="{Binding Path=CarId }"/>
+                    <GridViewColumn Header="Car Name" Width="200"
+                                    DisplayMemberBinding="{Binding Path=CarName}"/>
+                    <GridViewColumn Header="Manufacturer" Width="200"
+DisplayMemberBinding="{Binding Path=Manufacturer }"/>
+                    <GridViewColumn Header="Price" Width="100"
+DisplayMemberBinding="{Binding Path=Price,
+StringFormat={}{0:N3}}"/>
+                    <GridViewColumn Header="ReleasedYear" Width="100"
+DisplayMemberBinding="{Binding Path=ReleasedYear}"/>
+                    <GridViewColumn Header="Age" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ReleasedYear, Converter={StaticResource AgeConverter}}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="719,379,0,0" VerticalAlignment="Top" Click="btnClose_Click" Width="61"/>
+    </Grid>
+</Window>

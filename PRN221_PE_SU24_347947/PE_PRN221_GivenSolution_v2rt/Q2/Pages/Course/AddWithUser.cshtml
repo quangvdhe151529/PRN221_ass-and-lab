@@ -1,0 +1,65 @@
+﻿@page
+@model Q2.Pages.Course.AddWithUserModel
+@{
+}
+
+<style>
+    .mb-2 {
+        margin-bottom: 15px;
+    }
+</style>
+
+<h2>PRN221_Q2</h2>
+
+<div class="container">
+    <div>
+        <form method="post" id="form-submit">
+            <div class="mb-2">
+                <label class="d-block">Title:</label> <br />
+                <input asp-for="AddCourseRequest.Title" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="d-block">Description:</label> <br />
+                <input asp-for="AddCourseRequest.Description" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="d-block">Instructor:</label> <br />
+                <select asp-for="AddCourseRequest.InstructorId">
+                    @foreach (var item in Model.Instructors)
+                    {
+                        <option value="@item.InstructorId">@item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="mb-2">
+                <label class="d-block">User:</label>
+                @foreach (var item in Model.Users)
+                {
+                    <div>
+                        <input type="checkbox" value="@item.UserId" name="userId" />
+                        <span>@item.Username</span>
+                    </div>
+                }
+            </div>
+            <input type="hidden" id="userIds" asp-for="AddCourseRequest.UserIds" />
+            <button type="button" onclick="preSubmit();">Create New Course</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function preSubmit() {
+        var userIds = document.getElementsByName("userId");
+        var data = "";
+        for (var i = 0; i < userIds.length; i++) {
+            if (userIds[i].checked) {
+                data += userIds[i].value + " ";
+            }
+        }
+        console.log(data);
+        document.getElementById("userIds").value = data;
+        document.getElementById("form-submit").submit();
+
+    }
+
+</script>

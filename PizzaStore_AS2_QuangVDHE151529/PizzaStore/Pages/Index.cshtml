@@ -1,0 +1,47 @@
+﻿@page
+@model IndexModel
+@using PizzaStore.Models;
+
+@{
+    ViewData["Title"] = "Index";
+    Product product = new Product();
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Home</h1>
+
+<div class="text-center">
+    <div class="container">
+        <form method="get">
+            <div class="row mb-3">
+                <div class="form-group col-3">
+                    <input type="text" name="SearchString" value="@Model.CurrentFilter" class="form-control" placeholder="Search for products...">
+                </div>
+                <div class="form-group col-3">
+                    <select asp-for="@Model.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                </div>
+                <div class="form-group col-3">
+                    <input type="submit" value="Search" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            @foreach (var item in Model.Products)
+            {
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img class="card-img-top" src="@item.ProductImage" alt="@item.ProductName" style="width: 300px; height:300px;">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.ProductName</h5>
+                            <p class="card-text">Quantity Per Unit: @item.QuantityPerUnit</p>
+                            <p class="card-text">Unit Price: $@item.UnitPrice</p>
+                            <p class="card-text">Category: @item.Category.CategoryName</p>
+                            <p class="card-text">Supplier: @item.Supplier.CompanyName</p>
+                            <a class="btn btn-primary" role="button" asp-page="/Cart/AddToCart" asp-route-id="@item.ProductId">Add to Cart<i class="fa fa-cart-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
